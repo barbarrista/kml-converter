@@ -16,7 +16,7 @@ function proccessForm(event) {
     }
 
     if (fileName.endsWith(".gpx")) {
-        convertKMLFile(formData = formData, fileFormat = convertToFormat)
+        convertGPXFile(formData = formData, fileFormat = convertToFormat)
     }
 }
 
@@ -50,7 +50,7 @@ function processReponse(response) {
     contenDisposition = response.headers["content-disposition"]
     fileName = getFileName(contenDisposition)
     downloadButton.setAttribute('download', fileName)
-    downloadButton.classList.remove("d-none")
+    downloadButton.click()
 }
 
 function processError(error) {

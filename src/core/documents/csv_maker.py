@@ -18,8 +18,8 @@ def save_data_to_csv(file_path: Path, data: TableDataDTO, delimiter: str) -> Non
 def make_csv(data: TableDataDTO, delimiter: str) -> StringIO:
     """Making .csv file as in memory object"""
 
-    in_memory_file = StringIO()
-    writer = csv.writer(in_memory_file, delimiter=delimiter, quoting=csv.QUOTE_ALL)
+    io = StringIO()
+    writer = csv.writer(io, delimiter=delimiter, quoting=csv.QUOTE_ALL)
     writer.writerow(data.header)
     writer.writerows(data.rows)
-    return in_memory_file
+    return io
