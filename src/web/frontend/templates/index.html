@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>KML/GPX Конвертер</title>
+    <link
+      href="{{ url_for('static', path='/bootstrap/css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center align-items-center g-2">
+        <div class="col-6 border rounded-4 p-3">
+          <form enctype="multipart/form-data" id="converter-form" method="POST">
+            <label for="" class="form-label">Загрузите файл</label>
+            <input type="file" class="form-control" id="file-input" />
+            <div>
+              <label for="" class="form-label mt-4">
+                Форматировать в формат
+              </label>
+              <select class="form-select form-select-lg" id="format-select">
+                <option selected>Выберите формат документа</option>
+                {% for report_type in report_types %}
+                <option value="{{ report_type }}">{{ report_type }}</option>
+                {% endfor %}
+              </select>
+              <div class="col text-center">
+                <button type="submit" class="btn btn-dark mt-4 mx-auto">
+                  Конвертировать
+                </button>
+              </div>
+            </div>
+          </form>
+        <div class="col text-center">
+          <a type="submit" href="" class="btn btn-success mx-auto d-none" id="download-btn">
+            Скачать
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', path='/index.js') }}"></script>
+    <script src="{{ url_for('static', path='/axios.js') }}"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        form = document.getElementById("converter-form");
+        form.addEventListener("submit", proccessForm);
+      });
+    </script>
+  </body>
+</html>
