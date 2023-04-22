@@ -32,14 +32,20 @@ function convertGPXFile(formData, fileFormat) {
 }
 
 function convertKMLFile(formData, fileFormat) {
-    axios.post("/api/v1/converter/kml/build", formData, {
-        headers: {
-            "Content-Type": "multipart/form-data",
-        },
-        params: {
-            "report_type": fileFormat,
-        },
-    }).then(processReponse).catch(processError)
+    axios(
+        {
+            method: "post",
+            url: "/api/v1/converter/kml/build",
+            responseType: "stream",
+            data: formData,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+            params: {
+                "report_type": fileFormat,
+            },
+
+        }).then(processReponse).catch(processError)
 }
 
 function processReponse(response) {
